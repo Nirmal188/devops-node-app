@@ -1,0 +1,24 @@
+{
+  "name": "devops-node-app",
+  "version": "1.0.0",
+  "description": "Node.js CI/CD Pipeline Demo",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "test": "jest --coverage",
+    "test:unit": "jest tests/unit",
+    "test:integration": "jest tests/integration"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "jest": "^29.0.0",
+    "supertest": "^6.3.3",
+    "nodemon": "^3.0.0",
+    "wait-on": "^7.0.1",
+    "allure-jest": "^3.0.0",
+    "@playwright/test": "^1.40.0"
+  }
+}
