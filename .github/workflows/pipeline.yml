@@ -146,15 +146,11 @@ jobs:
           username: ${{ secrets.ACR_USERNAME }}
           password: ${{ secrets.ACR_PASSWORD }}
 
-      - name: Build Image
-        run: docker build -t devops-node-app:latest .
-
-      - name: Tag Image
-        run: |
-          docker tag devops-node-app:latest ${{ secrets.ACR_LOGIN_SERVER }}/devops-node-app:latest
-          docker tag devops-node-app:latest ${{ secrets.ACR_LOGIN_SERVER }}/devops-node-app:${{ github.sha }}
-
-      - name: Push to ACR
-        run: |
-          docker push ${{ secrets.ACR_LOGIN_SERVER }}/devops-node-app:latest
-          docker push ${{ secrets.ACR_LOGIN_SERVER }}/devops-node-app:${{ github.sha }}
+      - name: Build and Push Image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: |
+            ${{ secrets.ACR_LOGIN_SERVER }}/devops-node-app:latest
+            ${{ secrets.ACR_LOGIN_SERVER }}/devops-node-app:${{ github.sha }}
