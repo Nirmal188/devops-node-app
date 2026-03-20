@@ -138,9 +138,9 @@ jobs:
       - name: Build and Tag Image
         run: |
           docker build -t ${{ env.IMAGE_NAME }} .
-          docker tag ${{ env.IMAGE_NAME }} ${{ secrets.ACR_LOGIN_SERVER }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
-          docker tag ${{ env.IMAGE_NAME }} ${{ secrets.ACR_LOGIN_SERVER }}/${{ env.IMAGE_NAME }}:latest
-
+          docker tag ${{ env.IMAGE_NAME }}:latest ${{ secrets.ACR_LOGIN_SERVER }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
+          docker tag ${{ env.IMAGE_NAME }}:latest ${{ secrets.ACR_LOGIN_SERVER }}/${{ env.IMAGE_NAME }}:latest
+          
       - name: Push to ACR
         run: |
           docker push ${{ secrets.ACR_LOGIN_SERVER }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
